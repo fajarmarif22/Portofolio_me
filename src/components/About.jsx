@@ -1,6 +1,7 @@
 import React, { useState, useTransition } from "react";
-import Logo from "../assets/Fajar.jpeg"
+import Logo from "../assets/background.jpeg"
 import TabBotton from "./TabBotton";
+import "../components/App.css"
 
 const TAB_DATA = [
   {
@@ -67,15 +68,22 @@ function About() {
     })
   }
 
-  return <section className="text-white">
-    <div className="md:grid md:grid-cols-2 gap-2 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <img src={Logo} width={500} className="h-4/5 object-cover rounded-3xl pr-10 object-bottom" height={500} alt="" />
+  return (
+
+  <section className="text-white opacity-90 bg-about rounded-3xl">
+    <div className="relative">
+    <div className="absolute inset-0 bg-black opacity-50 rounded-3xl"></div>
+    <div className="relative z-10 text-white">
+    <div className="md:grid md:grid-cols-2 pl-10 gap-2 items-center py-8  xl:gap-16 sm:py-16 xl:px-16">
+      <div className="">
+        <img src={Logo} className="h-4/5 w-4/5 object-cover rounded-full p-10" alt="" />
+      </div>
       <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
         <h2 className="text-4xl font-bold text-white mb-4">About</h2>
         <p className="lg:text-md text-sm">
         Becoming a software developer, especially in web applications, is something I both hate and love. Initially, I tried to avoid this position due to its complexity. However, over time, I gradually began to understand it and started to make peace with the fact that being a software developer is an art of creation.
         </p>
-        <div className="flex flex-row justify-start mt-8">
+        <div className="flex flex-row justify-start mt-8 ">
           <TabBotton selectTab={()=>handleTabChange("skills")} active={tab==="skills"}>Skills</TabBotton>
           <TabBotton selectTab={()=>handleTabChange("education")} active={tab==="education"}>Education</TabBotton>
           <TabBotton selectTab={()=>handleTabChange("experience")} active={tab==="experience"}>Experience</TabBotton>
@@ -83,7 +91,9 @@ function About() {
         <div className="mt-8">{TAB_DATA.find((t)=>t.id === tab).content}</div>
       </div>
     </div>
-  </section>;
+    </div>
+  </div>
+  </section>)
 }
 
 export default About;
